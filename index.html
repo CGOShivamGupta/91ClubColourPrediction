@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>91Club Colour Prediction</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1c1c1c;
+            color: #ffffff;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+
+        /* Luxury color-changing animation */
+        @keyframes luxuryColorChange {
+            0% { color: #FFD700; }
+            25% { color: #DAA520; }
+            50% { color: #B8860B; }
+            75% { color: #8B6914; }
+            100% { color: #FFD700; }
+        }
+
+        h1 {
+            animation: luxuryColorChange 5s infinite;
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 50px;
+        }
+
+        input[type="number"] {
+            padding: 15px;
+            width: 120px;
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            background-color: #333;
+            border: 2px solid #FFD700;
+            border-radius: 8px;
+            color: #FFD700;
+            outline: none;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #FFD700;
+            color: #1c1c1c;
+            border: none;
+            border-radius: 8px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #DAA520;
+        }
+
+        .result {
+            font-size: 28px;
+            margin-top: 40px;
+            font-weight: bold;
+        }
+
+        .result span {
+            color: #FFD700;
+        }
+
+        .loading-circle {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 215, 0, 0.5);
+            border-radius: 50%;
+            border-top-color: #FFD700;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        a.button-link {
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 30px;
+        }
+
+        .register-button {
+            background-color: #FFD700;
+            color: #1c1c1c;
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .register-button:hover {
+            background-color: #DAA520;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>91Club Colour Prediction</h1>
+
+    <input type="number" id="periodNumber" min="100" max="999" placeholder="000" required>
+    <br>
+    <button onclick="generateBall()">Enter</button>
+
+    <div class="result" id="result">
+        Ball - <span id="ballType"></span>
+        <div class="loading-circle" id="loadingCircle" style="display: none;"></div>
+    </div>
+    
+    <a class="button-link" href="https://91club.club/#/register?invitationCode=761774344123" target="_blank">
+        <button class="register-button">Register Now</button>
+    </a>
+
+    <script>
+        function generateBall() {
+            const periodNumber = document.getElementById('periodNumber').value;
+            const ballTypeElement = document.getElementById('ballType');
+            const loadingCircle = document.getElementById('loadingCircle');
+
+            if (periodNumber.length === 3) {
+                // Show the loading circle
+                ballTypeElement.textContent = "";
+                loadingCircle.style.display = "inline-block";
+
+                // Simulate loading for 1 second, then show the result
+                setTimeout(() => {
+                    const ballType = Math.random() < 0.5 ? 'Big' : 'Small';
+                    ballTypeElement.textContent = ballType;
+                    loadingCircle.style.display = "none"; // Hide the loading circle
+                }, 1000);
+            } else {
+                alert("Please enter a 3-digit number.");
+            }
+        }
+    </script>
+
+</body>
+</html>
